@@ -103,7 +103,7 @@ export default {
         });
       }
     },
-    dateFormat(row, column, cellValue, index) {
+    dateFormat(cellValue) {
       var date = new Date(cellValue);
       var year = date.getFullYear();
       var month = date.getMonth() + 1;

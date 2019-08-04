@@ -3,9 +3,24 @@
     <el-form-item prop="title">
       <el-input v-model="article.title" placeholder="请输入文章标题" class="title"></el-input>
     </el-form-item>
-    <el-form-item prop="content">
+    <el-form-item prop="title">
+      <el-input v-model="article.tag" placeholder="请输入标签" class="title"></el-input>
+    </el-form-item>
+
+    <el-form-item>
+      <el-button type="primary" plain size="small" autofocus="true" @click="untilFlag=!untilFlag">MarkDown</el-button>
+      <el-button type="primary" plain size="small" @click="untilFlag=!untilFlag">富文本</el-button>
+    </el-form-item>
+
+    <!-- MarkDown -->
+    <el-form-item v-if="untilFlag">
+      2333555
+    </el-form-item>
+    <!-- 富文本 -->
+    <el-form-item prop="content" v-if="!untilFlag">
       <quill-editor v-model="article.content" ref="quillEditor" :options="editorOption"></quill-editor>
     </el-form-item>
+
     <el-form-item>
       <el-upload
         action="/api/api/upload"
@@ -55,8 +70,10 @@ export default {
       flag: false,
       article: {
         title: "",
-        content: ""
+        content: "",
+        tag: ""
       },
+      untilFlag : true,
       editorOption: {
         placeholder: "请输入文章内容",
         modules: {
@@ -145,4 +162,3 @@ export default {
 .upload
   text-align right
 </style>
-

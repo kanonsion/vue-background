@@ -10,7 +10,6 @@ import home from 'pages/index/children/home.vue'
 import userList from 'pages/User/userList.vue'
 
 import writeAritice from 'pages/Article/writeAritice'
-import aritices from 'pages/Article/aritices'
 
 
 Vue.use(Router)
@@ -49,11 +48,6 @@ const router = new Router({
           component: writeAritice,
           name: '文章编写',
         },
-        {
-          path: 'aritices',
-          component: aritices,
-          name: '文章管理',
-        }
       ]
     },
     {

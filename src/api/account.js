@@ -32,3 +32,6 @@ export const aritices = ()=> request('get','/api/api/aritice')
 
 //上传文件
 export const upload = (params)=> request('post','/api/api/upload',params)
+
+//删除文件
+export const imgDel = (params)=> request('post','/api/api/upload/delete',params)
