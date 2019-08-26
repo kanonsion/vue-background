@@ -21,7 +21,7 @@
           <span>文章管理</span>
         </template>
         <el-menu-item index="文章编写" @click="handlelist('/index/writearitice')">文章编写</el-menu-item>
-        <el-menu-item index="文章管理" @click="handlelist('/index/aritices')">文章管理</el-menu-item>
+        <el-menu-item index="文章管理" @click="handlelist('/index/articleList')">文章管理</el-menu-item>
       </el-submenu>
     </el-menu>
   </el-aside>

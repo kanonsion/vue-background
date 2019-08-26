@@ -25,13 +25,22 @@ export const queryUser = (id) => { return request('post', `/api/api/users/${id}`
 export const updateUser = (id, params) => { return request('post', `/api/api/users/edit/${id}`, params) }
 
 //编写文章
-export const saveAritice = (params) => request('post','/api/api/aritice/save',params)
+export const saveAritice = (params) => request('post', '/api/api/aritice/save', params)
 
 //读文章
-export const aritices = ()=> request('get','/api/api/aritice')
+export const aritices = () => request('get', '/api/api/aritice')
 
 //上传文件
-export const upload = (params)=> request('post','/api/api/upload',params)
+export const upload = (params) => request('post', '/api/api/upload', params)
 
 //删除文件
-export const imgDel = (params)=> request('post','/api/api/upload/delete',params)
+export const imgDel = (params) => request('post', '/api/api/upload/delete', params)
+
+//文章列表
+export const ariticeList = () => request('get', '/api/api/aritices')
+
+//修改单个文章
+export const ariticeEdit = (id, params) => request('post', `/api/api/aritices/edit/${id}`, params)
+
+//删除单个文章
+export const ariticeDelete = (id) => request('get',`/api/api/aritices/delete/${id}`)

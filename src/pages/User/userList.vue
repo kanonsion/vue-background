@@ -94,6 +94,7 @@ export default {
       try {
         this.list = await users();
         this.list = this.list.data;
+        console.log(this.list)
         this.filterList = this.list;
         this.paginations.total = this.list.length;
       } catch (error) {
@@ -104,7 +105,7 @@ export default {
       }
     },
     dateFormat(cellValue) {
-      var date = new Date(cellValue);
+      var date = new Date(cellValue.date);
       var year = date.getFullYear();
       var month = date.getMonth() + 1;
       var day = date.getDate();
