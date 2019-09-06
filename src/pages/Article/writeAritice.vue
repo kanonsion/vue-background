@@ -21,6 +21,7 @@
           style="min-height:600px"
           @imgAdd="imgAdd"
           @imgDel="imgDel"
+          v-model="article.content"
         />
       </el-form-item>
       <el-form-item class="btns">

@@ -38,7 +38,15 @@
           <el-input v-model="form.title" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item label="内容" :label-width="formLabelWidth">
-          <mavon-editor :ishljs="true" style="min-height:600px" v-model="form.content" />
+          <mavon-editor
+            :ishljs="true"
+            style="min-height:600px"
+            v-model="form.content"
+            @save="save"
+            @imgAdd="imgAdd"
+            @imgDel="imgDel"
+            ref="me"
+          />
         </el-form-item>
         <el-form-item label="查看次数" :label-width="formLabelWidth">
           <el-input v-model="form.watch" placeholder="请输入用户名"></el-input>
@@ -54,7 +62,13 @@
 </template>
 
 <script>
-import { ariticeList, ariticeEdit, ariticeDelete } from "api/account";
+import {
+  ariticeList,
+  ariticeEdit,
+  ariticeDelete,
+  upload,
+  imgDel as imgDelete
+} from "api/account";
 import breadcrumb from "components/breadcrumb.vue";
 export default {
   data() {
@@ -134,6 +148,31 @@ export default {
             message: "修改错误",
             type: "warning"
           });
+    },
+    /* 渲染后的数据 */
+    save(value, render) {
+      // 返回html代码
+      console.log(2333);
+      this.form.content = render;
+    },
+    /* 图片 */
+    async imgAdd(filename, imgfile) {
+      let formdata = new FormData();
+      formdata.append("files", imgfile);
+      await upload(formdata).then(res => {
+        this.$refs.me.$img2Url(filename, res.data);
+      });
+    },
+    async imgDel(filename) {
+      await imgDelete({ name: filename[1].name }).then(res => {
+        if (res.data) {
+          this.msg = "删除图片成功";
+          this.open1();
+        } else {
+          this.msg = "删除图片失败";
+          this.open2();
+        }
+      });
     }
   },
   mounted() {

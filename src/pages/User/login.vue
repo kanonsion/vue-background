@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <bg/>
+    <bg />
     <div class="from">
       <el-form :model="login" :rules="rules" ref="login" status-icon>
         <el-form-item label="用户名" prop="name">
@@ -88,7 +88,7 @@ export default {
         (typeof value === "object" && Object.keys(value).length === 0) ||
         (typeof value === "String" && value.trim().length === 0)
       );
-    }
+    },
   },
   components: {
     bg

@@ -13,11 +13,11 @@ module.exports = {
     proxyTable: {
       '/api':{
         target:'http://localhost:2333',
-        changeOrigin: true,
+        changeOrigin:true,
         pathRewrite:{
-          '^/api': ''
+          '/api':''
         }
-      },
+      }
     },
 
     // Various Dev Server settings
