@@ -2,6 +2,7 @@
 + vue全家桶 
 + element-ui 
 + mavon-editor
++ axios
 
 # 功能实现
 + 用户管理(增删改查)--实现
