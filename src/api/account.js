@@ -1,46 +1,39 @@
-import request from './request'
+import request from "@/utils/request";
 
 //用户注册
-export const register = (params) => { return request('post', '/api/api/users/register', params) }
+export const register = (params) => {
+  return request("post", "/users/register", params);
+};
 
 //用户登录
-export const login = (params) => { return request('post', '/api/api/users/login', params) }
-
-//test
-export const test = () => { return request('get', '/api/api/users/test') }
-
-//资金列表
-export const profile = () => { return request('get', '/api/api/profiles') }
+export const login = (params) => {
+  return request("post", "/users/login", params);
+};
 
 //用户列表
-export const users = () => { return request('get', '/api/api/users') }
+export const users = (params) => {
+  return request("post", "/users", params);
+};
 
 //删除用户
-export const deleteUser = (id) => { return request('delete', `/api/api/users/delete/${id}`) }
+export const deleteUser = (id) => {
+  return request("delete", `/users/delete/${id}`);
+};
 
 //查询单个用户
-export const queryUser = (id) => { return request('post', `/api/api/users/${id}`) }
+export const queryUser = (id) => {
+  return request("post", `/users/${id}`);
+};
 
 //修改用户信息
-export const updateUser = (id, params) => { return request('post', `/api/api/users/edit/${id}`, params) }
+export const updateUser = (id, params) => {
+  return request("post", `/users/edit/${id}`, params);
+};
 
 //编写文章
-export const saveAritice = (params) => request('post', '/api/api/aritice/save', params)
-
-//读文章
-export const aritices = () => request('get', '/api/api/aritice')
 
 //上传文件
-export const upload = (params) => request('post', '/api/api/upload', params)
+export const upload = (params) => request("post", "/upload", params);
 
 //删除文件
-export const imgDel = (params) => request('post', '/api/api/upload/delete', params)
-
-//文章列表
-export const ariticeList = () => request('get', '/api/api/aritices')
-
-//修改单个文章
-export const ariticeEdit = (id, params) => request('post', `/api/api/aritices/edit/${id}`, params)
-
-//删除单个文章
-export const ariticeDelete = (id) => request('get',`/api/api/aritices/delete/${id}`)
+export const imgDel = (params) => request("post", "/upload/delete", params);

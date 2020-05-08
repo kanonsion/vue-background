@@ -1,15 +1,36 @@
 <template>
   <el-form ref="article" :model="article" label-width="80px">
     <el-form-item prop="title">
-      <el-input v-model="article.title" placeholder="请输入文章标题" class="title"></el-input>
+      <el-input
+        v-model="article.title"
+        placeholder="请输入文章标题"
+        class="title"
+      ></el-input>
     </el-form-item>
     <el-form-item prop="title">
-      <el-input v-model="article.tag" placeholder="请输入标签" class="title"></el-input>
+      <el-input
+        v-model="article.tag"
+        placeholder="请输入标签"
+        class="title"
+      ></el-input>
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" plain size="small" autofocus="true" @click="untilFlag=!untilFlag">MarkDown</el-button>
-      <el-button type="primary" plain size="small" @click="untilFlag=!untilFlag">富文本</el-button>
+      <el-button
+        type="primary"
+        plain
+        size="small"
+        autofocus="true"
+        @click="untilFlag = !untilFlag"
+        >MarkDown</el-button
+      >
+      <el-button
+        type="primary"
+        plain
+        size="small"
+        @click="untilFlag = !untilFlag"
+        >富文本</el-button
+      >
     </el-form-item>
 
     <!-- MarkDown -->
@@ -18,7 +39,11 @@
     </el-form-item>
     <!-- 富文本 -->
     <el-form-item prop="content" v-if="!untilFlag">
-      <quill-editor v-model="article.content" ref="quillEditor" :options="editorOption"></quill-editor>
+      <quill-editor
+        v-model="article.content"
+        ref="quillEditor"
+        :options="editorOption"
+      ></quill-editor>
     </el-form-item>
 
     <el-form-item>
@@ -44,10 +69,10 @@
 
 <script>
 import Quill from "quill";
-import { addQuillTitle } from "./../utlis/quill-title.js";
+import { addQuillTitle } from "@/utils/quill-title.js";
 import hljs from "highlight.js";
 import "highlight.js/styles/atelier-lakeside-dark.css";
-import { saveAritice, upload } from "api/account";
+import { saveAritice } from "@/api/account";
 //工具栏配置
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -61,7 +86,7 @@ const toolbarOptions = [
   [{ font: [] }],
   [{ align: [] }],
   ["image"],
-  ["clean"]
+  ["clean"],
 ];
 export default {
   data() {
@@ -71,20 +96,20 @@ export default {
       article: {
         title: "",
         content: "",
-        tag: ""
+        tag: "",
       },
-      untilFlag : true,
+      untilFlag: true,
       editorOption: {
         placeholder: "请输入文章内容",
         modules: {
           toolbar: {
-            container: toolbarOptions
+            container: toolbarOptions,
           },
           syntax: {
-            highlight: text => hljs.highlightAuto(text).value //语法高亮
-          }
-        }
-      }
+            highlight: (text) => hljs.highlightAuto(text).value, //语法高亮
+          },
+        },
+      },
     };
   },
   // manually control the data synchronization
@@ -104,7 +129,7 @@ export default {
       console.log("editor change!", quill, html, text);
       this.content = html;
     }, */
-    submitForm(formName) {
+    submitForm() {
       this._saveAritice();
     },
     resetForm(formName) {
@@ -126,7 +151,7 @@ export default {
     },
     upSuccess(file) {
       console.log(file);
-      let addImgRange = this.$refs.quillEditor.quill.getSelection();
+      this.$refs.quillEditor.quill.getSelection();
       let url = `/api/upload/${this.file.name}`;
       this.$refs.quillEditor.quill.insertEmbed(
         0,
@@ -135,7 +160,7 @@ export default {
         Quill.sources.USER
       );
       this.$refs.quillEditor.quill;
-    }
+    },
   },
   computed: {
     editor() {
@@ -143,22 +168,25 @@ export default {
     },
     uploadUrl() {
       return "/api/api/upload";
-    }
+    },
   },
   mounted() {
     addQuillTitle(); //中文提示
     this.$refs.quillEditor.quill
       .getModule("toolbar")
       .addHandler("image", this.imgHandler);
-  }
+  },
 };
 </script>
 
-<style lang="stylus">
-.ql-container
-  min-height 300px
-.btns
-  text-align right
-.upload
-  text-align right
+<style lang="scss" scoped>
+.ql-container {
+  min-height: 300px;
+}
+.btns {
+  text-align: right;
+}
+.upload {
+  text-align: right;
+}
 </style>
