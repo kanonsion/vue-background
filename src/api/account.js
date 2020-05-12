@@ -27,6 +27,8 @@ export const queryUser = (id) => {
 
 //修改用户信息
 export const updateUser = (id, params) => {
+  console.log(id);
+  console.log(params);
   return request("post", `/users/edit/${id}`, params);
 };
 

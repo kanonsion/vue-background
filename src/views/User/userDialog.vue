@@ -47,10 +47,10 @@
           <el-select v-model="form.identity">
             <el-option
               label="管理员"
-              value="管理员"
+              value="admin"
               placeholder="请选择活动区域"
             ></el-option>
-            <el-option label="普通用户" value="普通用户"></el-option>
+            <el-option label="普通用户" value="nor"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -129,13 +129,13 @@ export default {
       }, 0);
     },
     addForm(formname) {
-      console.log(this.form);
+      console.log(this.dialog);
       this.$refs[formname].validate((valid) => {
         console.log(valid);
         if (valid) {
-          if (formname === "add") {
+          if (this.dialog.ref === "add") {
             this._register();
-          } else if (formname === "edit") {
+          } else if (this.dialog.ref === "edit") {
             this._updateUser();
           }
         }
