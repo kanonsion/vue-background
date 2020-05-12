@@ -3,7 +3,7 @@ import { Loading, Message } from "element-ui";
 import router from "@/router";
 import store from "@/store";
 
-axios.defaults.baseURL = "http://123.57.189.47:3003/api";
+axios.defaults.baseURL = process.env.VUE_APP_URL;
 axios.defaults.crossDomain = true;
 
 function startLoading() {
@@ -11,7 +11,7 @@ function startLoading() {
     fullscreen: true,
     lock: true,
     text: "加载中",
-    background: "rgba(0, 0, 0, .7)"
+    background: "rgba(0, 0, 0, .7)",
   });
 }
 function endLoading() {
@@ -20,12 +20,12 @@ function endLoading() {
 
 //请求拦截
 axios.interceptors.request.use(
-  config => {
+  (config) => {
     startLoading();
     config.headers.Authorization = sessionStorage.token;
     return config;
   },
-  error => {
+  (error) => {
     endLoading();
     return Promise.reject(error);
   }
@@ -33,11 +33,11 @@ axios.interceptors.request.use(
 
 //响应拦截
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     endLoading();
     return Promise.resolve(response.data);
   },
-  error => {
+  (error) => {
     console.log(error);
     endLoading();
     if (error.response.status === 401) {

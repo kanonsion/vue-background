@@ -94,7 +94,10 @@ export default {
       let formdata = new FormData();
       formdata.append("files", imgfile);
       await upload(formdata).then((res) => {
-        this.$refs.me.$img2Url(filename, res);
+        this.$refs.me.$img2Url(
+          filename,
+          process.env.VUE_APP_BASEURL + "/upload/" + res
+        );
       });
     },
     async imgDel(filename) {
