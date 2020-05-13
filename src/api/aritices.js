@@ -15,3 +15,8 @@ export const ariticeEdit = (id, params) => {
 export const ariticeDelete = (id) => {
   return request("get", `/aritice/delete/${id}`);
 };
+
+//审核
+export const auditing = (params) => {
+  return request("post", `/aritice/auditing`, params);
+};

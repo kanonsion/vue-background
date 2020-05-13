@@ -35,6 +35,23 @@
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
               >编辑</el-button
             >
+            <!-- 
+              0:不需要审核
+             -->
+            <el-button
+              size="mini"
+              type="success"
+              v-if="scope.row.status === 0"
+              @click="auditing(1, scope.row._id)"
+              >下架</el-button
+            >
+            <el-button
+              size="mini"
+              type="primary"
+              v-else
+              @click="auditing(0, scope.row._id)"
+              >审核</el-button
+            >
             <el-button
               size="mini"
               type="danger"
@@ -101,7 +118,12 @@
 <script>
 import { upload, imgDel as imgDelete } from "@/api/account";
 import { getList } from "@/api/tags";
-import { ariticeList, ariticeEdit, ariticeDelete } from "@/api/aritices";
+import {
+  ariticeList,
+  ariticeEdit,
+  ariticeDelete,
+  auditing,
+} from "@/api/aritices";
 import { dateFormat } from "@/utils/filter";
 export default {
   data() {
@@ -203,6 +225,15 @@ export default {
       console.log(value);
       console.log(row);
       return row.tagId.tag === value;
+    },
+    /* 文章审核 */
+    async auditing(status, id) {
+      let res = await auditing({ id, status });
+      this.$message({
+        message: res.msg,
+        type: "success",
+      });
+      this._getList(this.paginations.currentPage, this.paginations.pageSize);
     },
   },
   mounted() {

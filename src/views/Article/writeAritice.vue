@@ -83,9 +83,13 @@ export default {
       this.article.tag = value;
     },
     async _saveAritice() {
+      const roles = await this.$store.dispatch("role", sessionStorage.token);
+      roles === "admin" ? (this.article.status = 0) : (this.article.status = 1);
       let res = await ariticeSave(this.article);
       this.article = {};
-      Message.success(res.msg);
+      roles === "admin"
+        ? Message.success(res.msg)
+        : Message.success("提交成功,等待审核");
     },
     async _getList() {
       this.tags = await getList();

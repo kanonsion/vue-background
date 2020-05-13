@@ -118,7 +118,7 @@ export const asyncRouterMap = [
     component: layout,
     hiddle: false,
     name: "tags",
-    roles: ["admin", "nor"],
+    roles: ["admin"],
     meta: {
       title: "标签",
       icon: "el-icon-notebook-1",
@@ -154,7 +154,7 @@ export const asyncRouterMap = [
     component: layout,
     hiddle: false,
     name: "comment",
-    roles: ["admin", "nor"],
+    roles: ["admin"],
     meta: {
       title: "评论",
       icon: "el-icon-chat-line-square      ",

@@ -16,7 +16,7 @@
             :index="item.path + '/' + item2.path"
             v-for="(item2, index2) in item.children"
             :key="index2"
-            ><i :class="item.meta.icon"></i>{{ item.meta.title }}</el-menu-item
+            ><i :class="item.meta.icon"></i><span slot="title">{{ item.meta.title }}</span></el-menu-item
           >
         </template>
         <el-submenu :index="item.path" :key="index" v-else>

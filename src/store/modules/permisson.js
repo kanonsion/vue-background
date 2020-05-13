@@ -1,12 +1,12 @@
 import { asyncRouterMap } from "@/router";
 
 const state = {
-  routes: []
+  routes: [],
 };
 
 const actions = {
   setRoutes({ commit }, role) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       let addroutes = [];
       if (role.includes("admin")) {
         addroutes = asyncRouterMap;
@@ -17,13 +17,13 @@ const actions = {
       commit("SET-ROUTES", addroutes);
       resolve(addroutes);
     });
-  }
+  },
 };
 
 const mutations = {
   "SET-ROUTES"(state, routes) {
     state.routes = routes;
-  }
+  },
 };
 
 function filterRoutes(arr, role) {
@@ -51,5 +51,5 @@ function hasRole(arr, role) {
 export default {
   state,
   actions,
-  mutations
+  mutations,
 };
