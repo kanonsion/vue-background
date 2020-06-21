@@ -32,24 +32,26 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import breadcrumb from "@/components/breadcrumb.vue";
-export default {
-  components: {
-    breadcrumb
-  },
-  data() {
-    return {
-      collapse: false
-    };
-  },
-  methods: {
-    ...mapActions(["clearUser"]),
+  import {mapActions} from "vuex";
+  import breadcrumb from "@/components/breadcrumb.vue";
+  import jwtDecode from "jwt-decode";
+
+  export default {
+    components: {
+      breadcrumb,
+    },
+    data() {
+      return {
+        collapse: false,
+      };
+    },
+    methods: {
+      ...mapActions(["clearUser"]),
     handleCommand(command) {
       switch (command) {
         case "info":
           this.$alert(this.user, "个人信息", {
-            confirmButtonText: "确定"
+            confirmButtonText: "确定",
           });
           break;
         case "exit":
@@ -57,17 +59,17 @@ export default {
           this.$router.push("/login");
       }
     },
-    toggleIcon() {
-      this.collapse = !this.collapse;
-      this.$emit("isCollapse", this.collapse);
-    }
-  },
-  computed: {
-    ...mapState({
-      user: state => state.user
-    })
-  }
-};
+      toggleIcon() {
+        this.collapse = !this.collapse;
+        this.$emit("isCollapse", this.collapse);
+      },
+    },
+    computed: {
+      user() {
+        return jwtDecode(sessionStorage.token);
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -109,11 +111,11 @@ export default {
         }
       }
       span {
-        color: block;
+        color: #000;
       }
       .el-dropdown {
         i {
-          color: block;
+          color: #000;
         }
       }
     }
