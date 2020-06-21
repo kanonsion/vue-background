@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
-/dist
-/client
+dist
+client
 
 # local env files
 .env.local
@@ -20,3 +20,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+/client/
